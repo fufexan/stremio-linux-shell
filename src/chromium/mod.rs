@@ -34,6 +34,7 @@ pub enum ChromiumEvent {
     Render(Frame),
     Open(Url),
     Ipc(String),
+    CursorChange(String),
 }
 
 pub struct Chromium {

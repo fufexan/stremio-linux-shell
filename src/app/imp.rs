@@ -159,6 +159,10 @@ impl ApplicationImpl for Application {
                         ChromiumEvent::Fullscreen(state) => window.set_fullscreen(state),
                         ChromiumEvent::Render(frame) => webview.render(frame),
                         ChromiumEvent::Open(url) => window.open_uri(url),
+                        ChromiumEvent::CursorChange(name) => {
+                            let cursor = gtk::gdk::Cursor::from_name(&name, None);
+                            webview.set_cursor(cursor.as_ref());
+                        }
                         ChromiumEvent::Ipc(message) => {
                             if let Ok(event) = ipc::parse_request(&message) {
                                 match event {
